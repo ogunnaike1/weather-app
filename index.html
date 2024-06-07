@@ -11,10 +11,10 @@
         <div class="div-weather">
             <div class="div-theweather">The weather</div>
             <div class="div-temp">
-                <div class="div-degree">08</div>
+                <div class="div-degree" id="displayDegree">08&deg;C</div>
                 <div class="div-wrapcity">
-                    <span class="city">London</span>
-                    <span class="date">56,6788 sunday</span>
+                    <span class="city" id="cityName">London</span>
+                    <span class="date" id="todaysDate">56,6788 sunday</span>
                 </div>
 
             </div>
@@ -28,38 +28,38 @@
                 <div class="weather-details">Weather Details</div>
                 <div class="details">
                     <span class="">Location</span>
-                    <span class="">ogun</span>
+                    <span class="" id="cityLocation"></span>
                 </div>
                 <div class="details">
                     <span class="">Description</span>
-                    <span class=""></span>
+                    <span class="" id="description"></span>
                 </div>
                 <div class="details">
                     <span class="">Humidity</span>
-                    <span class=""></span>
+                    <span class="" id="humidity"></span>
                 </div>
                 <div class="details">
-                    <span class="">Wind</span>
-                    <span class=""></span>
+                    <span class="">Wind Speed</span>
+                    <span class="" id="wind"></span>
                 </div>
                 <div class="div-line">
                     
                 </div>
                 <div class="details">
                     <span class="">Min temp</span>
-                    <span class=""></span>
+                    <span class="" id="minTemp"></span>
                 </div>
                 <div class="details">
                     <span class="">Max temp</span>
-                    <span class=""></span>
+                    <span class="" id="maxTemp"></span>
                 </div>
                 <div class="details">
                     <span class="">Temp</span>
-                    <span class=""></span>
+                    <span class="" id="temp"></span>
                 </div>
                 <div class="details">
                     <span class="">Pressure</span>
-                    <span class=""></span>
+                    <span class="" id="pressure"></span>
                 </div>
 
             </div>
@@ -70,18 +70,54 @@
    
 </body>
 <script>
-
+   
         const fetchData = async() =>{
         const apiiData = `https://api.openweathermap.org/data/2.5/weather?q=${inputWeather.value}&appid=85bb9c974b1816b14eb64505d72b3e34`
         try {
         const reponse = await fetch(apiiData);
         const result = await reponse.json();
-        console.log(result.main.temp)
-            
+        console.log(result)
+        weatherRResult()
+        todayDateAndTime()
+
         } catch (error) {
             console.log(error.message)
         }
        
+        }
+
+        const weatherRResult = () =>{
+            const roundUpDecimal = (num) => {
+           return Math.ceil(num * 100) / 100;
+             }
+        cityLocation.innerHTML = `${result.name}, ${result.sys.country}`;
+        cityName.innerHTML = `${result.name}, ${result.sys.country}`;
+        humidity.innerHTML = result.main.humidity + '%';
+        wind.innerHTML = result.wind.speed;
+        const  minTemppResult = Number (result.main.temp_min);
+        const  minTempDegree =  minTemppResult - 273
+        minTemp.innerHTML = roundUpDecimal( minTempDegree) + '&deg;C';
+        const  maxTempResult = Number (result.main.temp_max);
+        const  maxTempDegree =  maxTempResult - 273
+        maxTemp.innerHTML = roundUpDecimal( maxTempDegree) + '&deg;C';
+        const tempResult = Number (result.main.temp);
+        const tempDegree = tempResult - 273
+        temp.innerHTML = roundUpDecimal(tempDegree) + '&deg;C';
+        displayDegree.innerHTML = Math.ceil(tempDegree) + '&deg;C';
+        console.log(tempResult)
+        pressure.innerHTML = result.main.pressure
+        }
+
+        const todayDateAndTime = () =>{
+            let todayDate = new Date();
+            let formattedDate =  todayDate .getFullYear() + '-' + 
+                            String( todayDate .getMonth() + 1).padStart(2, '0') + '-' + 
+                            String( todayDate .getDate()).padStart(2, '0');
+        let formattedTime = String( todayDate .getHours()).padStart(2, '0') + ':' + 
+                            String( todayDate .getMinutes()).padStart(2, '0') + ':' + 
+                            String( todayDate .getSeconds()).padStart(2, '0');
+        let  = formattedDate + ' ' + formattedTime;
+        todaysDate.innerHTML = currentDateTime;
         }
 
 

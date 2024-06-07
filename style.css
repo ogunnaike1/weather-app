@@ -6,8 +6,6 @@ body{
 }
 .div-main{
     display: flex;
-    
-    
 }
 .div-weather{
     width: 65vw;
