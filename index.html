@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="div-main">
+        <div class="div-weather">
+            <div class="div-theweather">The weather</div>
+            <div class="div-temp">
+                <div class="div-degree">08</div>
+                <div class="div-wrapcity">
+                    <span class="city"></span>
+                    <span class="date"></span>
+                </div>
+
+            </div>
+        </div>
+        <div class="div-search"></div>
+    </div>
+
+    <!-- <input id="inputWeather" type="text">
+    <button onclick="fetchData()"> fetch</button> -->
+    
+</body>
+<script>
+
+        const fetchData = async() =>{
+        const apiiData = `https://api.openweathermap.org/data/2.5/weather?q=${inputWeather.value}&appid=85bb9c974b1816b14eb64505d72b3e34`
+        try {
+        const reponse = await fetch(apiiData);
+        const result = await reponse.json();
+        console.log(result.main.temp)
+            
+        } catch (error) {
+            console.log(error.message)
+        }
+       
+        }
+
+
+
+</script>
+</html>

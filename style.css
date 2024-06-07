@@ -1,0 +1,15 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url(./image/weather.jpg);
+    background-size: cover;
+}
+.div-main{
+    display: flex;
+}
+.div-weather{
+    
+}
+.div-search{
+    
+}
