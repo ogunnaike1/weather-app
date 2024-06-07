@@ -70,14 +70,14 @@
    
 </body>
 <script>
-   
+    let todayDate = new Date();
         const fetchData = async() =>{
         const apiiData = `https://api.openweathermap.org/data/2.5/weather?q=${inputWeather.value}&appid=85bb9c974b1816b14eb64505d72b3e34`
         try {
         const reponse = await fetch(apiiData);
         const result = await reponse.json();
         console.log(result)
-        weatherRResult()
+        weatherRResult(result)
         todayDateAndTime()
 
         } catch (error) {
@@ -86,7 +86,7 @@
        
         }
 
-        const weatherRResult = () =>{
+        const weatherRResult = (result) =>{
             const roundUpDecimal = (num) => {
            return Math.ceil(num * 100) / 100;
              }
@@ -109,14 +109,14 @@
         }
 
         const todayDateAndTime = () =>{
-            let todayDate = new Date();
+           
             let formattedDate =  todayDate .getFullYear() + '-' + 
                             String( todayDate .getMonth() + 1).padStart(2, '0') + '-' + 
                             String( todayDate .getDate()).padStart(2, '0');
         let formattedTime = String( todayDate .getHours()).padStart(2, '0') + ':' + 
                             String( todayDate .getMinutes()).padStart(2, '0') + ':' + 
                             String( todayDate .getSeconds()).padStart(2, '0');
-        let  = formattedDate + ' ' + formattedTime;
+        let  currentDateTime = formattedDate + ' ' + formattedTime;
         todaysDate.innerHTML = currentDateTime;
         }
 
