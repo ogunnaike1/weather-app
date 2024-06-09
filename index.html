@@ -74,11 +74,7 @@
         const fetchData = async() =>{
         const apiiData = `https://api.openweathermap.org/data/2.5/weather?q=${inputWeather.value}&appid=85bb9c974b1816b14eb64505d72b3e34`
         try {
-        const reponse = await fetch(apiiData);
-        const result = await reponse.json();
-        console.log(result)
-        weatherRResult(result)
-        todayDateAndTime()
+      
 
         } catch (error) {
             console.log(error.message)
@@ -104,8 +100,8 @@
         const tempDegree = tempResult - 273
         temp.innerHTML = roundUpDecimal(tempDegree) + '&deg;C';
         displayDegree.innerHTML = Math.ceil(tempDegree) + '&deg;C';
-        console.log(tempResult)
         pressure.innerHTML = result.main.pressure
+        description.innerHTML = result.weather[0].description
         }
 
         const todayDateAndTime = () =>{
