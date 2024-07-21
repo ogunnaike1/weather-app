@@ -92,11 +92,7 @@
              }
         cityLocation.innerHTML = `${result.name}, ${result.sys.country}`;
         cityName.innerHTML = `${result.name}, ${result.sys.country}`;
-        humidity.innerHTML = result.main.humidity + '%';
-        wind.innerHTML = result.wind.speed;
-        const  minTemppResult = Number (result.main.temp_min);
-        const  minTempDegree =  minTemppResult - 273
-        minTemp.innerHTML = roundUpDecimal( minTempDegree) + '&deg;C';
+        
         const  maxTempResult = Number (result.main.temp_max);
         const  maxTempDegree =  maxTempResult - 273
         maxTemp.innerHTML = roundUpDecimal( maxTempDegree) + '&deg;C';
